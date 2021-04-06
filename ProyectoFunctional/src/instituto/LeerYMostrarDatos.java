@@ -1,4 +1,4 @@
-package institutosimple;
+package instituto;
 
 import daw.com.Pantalla;
 

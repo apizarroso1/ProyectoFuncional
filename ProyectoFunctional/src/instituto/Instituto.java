@@ -43,6 +43,7 @@ public class Instituto {
 		int lugar;
 		
 		lugar = personas.indexOf(new Alumno (nif)); // Chapuza
+		
 		if (lugar >= 0)
 			persona = personas.get(lugar);
 		

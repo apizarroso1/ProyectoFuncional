@@ -1,4 +1,4 @@
-package institutosimple;
+package instituto;
 
 import java.util.function.Consumer;
 
