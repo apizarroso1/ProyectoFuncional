@@ -16,6 +16,8 @@ public class AppPeliculasBis {
 			
 			if (peliculas.add(p)) {
 				p.leerOtrosDatos();
+			} else {
+				System.out.println("La pelicula ya existe");
 			}
 		} while (Teclado.leerString("\nContinuar: (s/n)").equalsIgnoreCase("s"));
 

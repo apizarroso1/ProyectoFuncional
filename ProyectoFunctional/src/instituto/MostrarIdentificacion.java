@@ -10,7 +10,6 @@ public class MostrarIdentificacion implements Consumer<Persona> {
 	public void accept(Persona t) {
 		// TODO Auto-generated method stub
 		Pantalla.escribirString("\n" + t.identificacion());
-
 	}
 
 }

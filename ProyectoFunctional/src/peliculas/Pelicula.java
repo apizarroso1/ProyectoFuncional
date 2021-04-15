@@ -159,7 +159,7 @@ public class Pelicula implements LeerYMostrarDatos{
 				System.out.println(s);
 			}
 			
-			genero = Teclado.leerString("\nSeleccione el genero");
+			genero = Teclado.leerString("\nSeleccione el genero").toUpperCase();
 			
 		} while (!generos.contains(genero));
 		
