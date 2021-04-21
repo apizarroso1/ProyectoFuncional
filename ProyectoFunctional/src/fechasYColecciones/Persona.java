@@ -91,7 +91,7 @@ public class Persona implements Comparable<Persona>, LeerYMostrarDatos {
 
 	@Override
 	public int compareTo(Persona o) {
-		return 0;
+		return nombre.compareTo(o.getNombre());
 	}
 
 	@Override
@@ -231,55 +231,29 @@ public class Persona implements Comparable<Persona>, LeerYMostrarDatos {
 	}
 	
 	public Iterator<String> getAficiones(){
-		return null;
+		Iterator<String> iterator = aficiones.iterator();
+		
+		return iterator;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + Float.floatToIntBits(afecto);
-		result = prime * result + ((aficiones == null) ? 0 : aficiones.hashCode());
-		result = prime * result + ((colectivo == null) ? 0 : colectivo.hashCode());
 		result = prime * result + ((dni == null) ? 0 : dni.hashCode());
-		result = prime * result + ((fechaNacimiento == null) ? 0 : fechaNacimiento.hashCode());
-		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		return result;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
 		Persona other = (Persona) obj;
-		if (Float.floatToIntBits(afecto) != Float.floatToIntBits(other.afecto))
-			return false;
-		if (aficiones == null) {
-			if (other.aficiones != null)
-				return false;
-		} else if (!aficiones.equals(other.aficiones))
-			return false;
-		if (colectivo != other.colectivo)
-			return false;
+	
 		if (dni == null) {
 			if (other.dni != null)
 				return false;
 		} else if (!dni.equals(other.dni))
 			return false;
-		if (fechaNacimiento == null) {
-			if (other.fechaNacimiento != null)
-				return false;
-		} else if (!fechaNacimiento.equals(other.fechaNacimiento))
-			return false;
-		if (nombre == null) {
-			if (other.nombre != null)
-				return false;
-		} else if (!nombre.equals(other.nombre))
-			return false;
+	
 		return true;
 	}
 

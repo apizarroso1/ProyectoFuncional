@@ -13,7 +13,7 @@ public class Libro {
 		this.titulo = titulo;
 		this.autor = autor;
 		
-		this.materias= new ArrayList <Materia> (); //Array list creado y vacio.
+		this.materias = new ArrayList <Materia> (); //Array list creado y vacio.
 		
 	}
 	
