@@ -14,7 +14,7 @@ public class Persona implements Comparable<Persona>, LeerYMostrarDatos {
 
 	
 	// Dudas: Iterador y compareTO
-	
+	// SI
 	
 	private String nombre;
 	private String dni;
