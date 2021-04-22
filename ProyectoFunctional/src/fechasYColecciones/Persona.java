@@ -12,10 +12,6 @@ import daw.com.Teclado;
 
 public class Persona implements Comparable<Persona>, LeerYMostrarDatos {
 
-	
-	// Dudas: Iterador y compareTO
-	// SI
-	
 	private String nombre;
 	private String dni;
 	private LocalDate fechaNacimiento;
@@ -32,7 +28,7 @@ public class Persona implements Comparable<Persona>, LeerYMostrarDatos {
 		this.nombre = nombre;
 		this.dni = dni;
 		this.fechaNacimiento = fechaNacimiento;
-		this.afecto = afecto;
+		setAfecto(afecto);
 		this.aficiones = aficiones;
 		this.colectivo = colectivo;
 	}
@@ -74,7 +70,7 @@ public class Persona implements Comparable<Persona>, LeerYMostrarDatos {
 	}
 
 	public void setAfecto(float afecto) {
-		this.afecto = afecto;
+		this.afecto = Math.max(0, afecto);
 	}
 
 	public void setAficiones(HashSet<String> aficiones) {
@@ -105,16 +101,16 @@ public class Persona implements Comparable<Persona>, LeerYMostrarDatos {
 
 	public void leerAficiones() {
 		String aficion;
-		
+
 		do {
 			aficion = Teclado.leerString("\nAficion");
-			
+
 			if (!aficiones.contains(aficion)) {
 				aficiones.add(aficion);
 			}
-			
+
 		} while (Teclado.leerString("\nContinuar (s/n)").equalsIgnoreCase("s"));
-		
+
 	}
 
 	public void leerColectivo() {
@@ -151,69 +147,70 @@ public class Persona implements Comparable<Persona>, LeerYMostrarDatos {
 	public void leerClave() {
 		this.dni = Teclado.leerString("\nDni");
 	}
-	
+
 	public int getEdad() {
-		Period periodo;
-		int anios;
-		
-		periodo = Period.between(fechaNacimiento, LocalDate.now());
-		
-		anios = periodo.getYears();
-		
-		return anios;
+		/*
+		 * Period periodo; int anios;
+		 * 
+		 * periodo = Period.between(fechaNacimiento, LocalDate.now());
+		 * 
+		 * anios = periodo.getYears();
+		 * 
+		 * return anios;
+		 */
+
+		return fechaNacimiento.until(LocalDate.now()).getYears();
 	}
-	
+
 	public boolean esMayorDeEdad() {
-		
+
 		if (getEdad() >= 18) {
 			return true;
 		} else {
 			return false;
 		}
 	}
-	
+
 	public boolean esSuCumpleHoy() {
-		
-		/*
-		if (fechaNacimiento.getMonthValue() == LocalDate.now().getMonthValue()) {
-			if (fechaNacimiento.getDayOfMonth() == LocalDate.now().getDayOfMonth()) {
-				
-			}
-		}
-		*/
-		
-		if(fechaNacimiento.getDayOfYear() == LocalDate.now().getDayOfYear()) {
+
+		if ((fechaNacimiento.getMonthValue() == LocalDate.now().getMonthValue())
+				&& (fechaNacimiento.getDayOfMonth() == LocalDate.now().getDayOfMonth())) {
 			return true;
 		} else {
 			return false;
 		}
+
+		/*
+		 * if(fechaNacimiento.getDayOfYear() == LocalDate.now().getDayOfYear()) { return
+		 * true; } else { return false; }
+		 */
 	}
-	
+
 	public void aumentarAfecto() {
 		float cant;
-		
+
 		cant = Teclado.leerFloat("\nCantidad a aumentar de afecto");
-		
+
 		if (cant > 0) {
 			this.setAfecto(this.getAfecto() + cant);
 		}
 	}
-	
+
 	public void descontarAfecto() {
 		float cant;
-		
+
 		cant = Teclado.leerFloat("\nCantidad a descontar de afecto");
-		
+
 		if (cant > 0) {
 			this.setAfecto(this.getAfecto() - cant);
 		}
 	}
-	
+
 	public boolean insertarAficion() {
 		String aficion;
-		
+
 		aficion = Teclado.leerString("\nAficion a insertar");
-		
+
 		if (!aficiones.contains(aficion)) {
 			aficiones.add(aficion);
 			return true;
@@ -221,7 +218,7 @@ public class Persona implements Comparable<Persona>, LeerYMostrarDatos {
 			return false;
 		}
 	}
-	
+
 	public boolean tieneAficion() {
 		if (!aficiones.isEmpty()) {
 			return true;
@@ -229,11 +226,9 @@ public class Persona implements Comparable<Persona>, LeerYMostrarDatos {
 			return false;
 		}
 	}
-	
-	public Iterator<String> getAficiones(){
-		Iterator<String> iterator = aficiones.iterator();
-		
-		return iterator;
+
+	public Iterator<String> getAficiones() {
+		return aficiones.iterator();
 	}
 
 	@Override
@@ -243,17 +238,17 @@ public class Persona implements Comparable<Persona>, LeerYMostrarDatos {
 		result = prime * result + ((dni == null) ? 0 : dni.hashCode());
 		return result;
 	}
-
+	
 	@Override
 	public boolean equals(Object obj) {
 		Persona other = (Persona) obj;
-	
+
 		if (dni == null) {
 			if (other.dni != null)
 				return false;
 		} else if (!dni.equals(other.dni))
 			return false;
-	
+
 		return true;
 	}
 
