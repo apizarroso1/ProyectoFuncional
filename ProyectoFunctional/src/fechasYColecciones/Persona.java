@@ -219,8 +219,8 @@ public class Persona implements Comparable<Persona>, LeerYMostrarDatos {
 		}
 	}
 
-	public boolean tieneAficion() {
-		if (!aficiones.isEmpty()) {
+	public boolean tieneAficion(String aficion) {
+		if (aficiones.contains(aficion)) {
 			return true;
 		} else {
 			return false;

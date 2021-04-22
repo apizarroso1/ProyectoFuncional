@@ -84,6 +84,30 @@ public class DamSocial {
 	}
 	
 	public List<Persona> obtenerPersonasPorAficion(String aficion){
+		List<Persona> personasLista = new ArrayList<Persona> (personas.values());
+		FiltroPorAficion filter = new FiltroPorAficion(aficion);
+		ComparadorPorEdad comparator = new ComparadorPorEdad();
 		
+		personasLista.removeIf(filter);
+		
+		personasLista.sort(comparator);
+		
+		return personasLista;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
