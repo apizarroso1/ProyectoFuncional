@@ -1,7 +1,10 @@
 package fechasYColecciones;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.util.TreeMap;
 
 public class DamSocial {
@@ -84,7 +87,7 @@ public class DamSocial {
 	}
 	
 	public List<Persona> obtenerPersonasPorAficion(String aficion){
-		List<Persona> personasLista = new ArrayList<Persona> (personas.values());
+		List<Persona> personasLista = new ArrayList<> (personas.values());
 		FiltroPorAficion filter = new FiltroPorAficion(aficion);
 		ComparadorPorEdad comparator = new ComparadorPorEdad();
 		
@@ -95,6 +98,28 @@ public class DamSocial {
 		return personasLista;
 	}
 	
+	public List<Persona> obtenerPersonaCumple(){
+		List <Persona> personasLista = new ArrayList<> (personas.values());
+		FiltroPorCumple funkyFilter = new FiltroPorCumple();
+		ComparadorPorAfecto funkyComparer = new ComparadorPorAfecto();
+		
+		personasLista.removeIf(funkyFilter);
+		
+		personasLista.sort(funkyComparer);
+		
+		return personasLista;
+	}
+	
+	public 	Iterator<String> obtenerAficiones(Colectivo colectivo){
+		List <Persona> personasLista = new ArrayList<>(personas.values());
+		Set <String> aficiones = new HashSet<>();
+		FiltroPorColectivo funkyFilter = new FiltroPorColectivo(colectivo);
+		
+		personasLista.removeIf(funkyFilter);
+		
+		
+		
+	}
 	
 	
 	
