@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Libro {
 
@@ -6,31 +7,23 @@ public class Libro {
 	private ArrayList <Materia> materias;
 	
 	
-	//Constructor con parámetros
-	public Libro(String isbn, String titulo, String autor) {
+	//Constructor con parï¿½metros
+	public Libro(String isbn, String titulo, String autor, ArrayList <Materia> materias) {
 	
 		this.isbn = isbn;
 		this.titulo = titulo;
 		this.autor = autor;
-		
-		this.materias = new ArrayList <Materia> (); //Array list creado y vacio.
-		
+		this.materias = materias;
 	}
 	
 	//Costructor por defecto sin materia
 	public Libro () {
 		
-		this ("","","");
+		this ("","","", new ArrayList<>());
 	}
-
-	//Costructor copia
-	public Libro (Libro original) {
-		
-		this (original.isbn, original.titulo, original.autor);
-		this.materias= new ArrayList <Materia> ();
-		for (int i = 0; i < original.materias.size(); i++) {
-			this.materias.add(original.materias.get(i)); //A mis materias, le guardo en la posicion i,  el objeto.
-		}
+	
+	public Libro(String isbn) {
+		this(isbn, "", "", new ArrayList<>());
 	}
 
 	//Selectores y modificadores
@@ -80,22 +73,23 @@ public class Libro {
 		this.materias = materias;
 	}
 
-
-
 	//To string
 	@Override
 	public String toString() {
-		return "\n Libro [isbn=" + isbn + ", titulo=" + titulo + ", autor=" + autor + ", materias=" + materias + "]";
+		return "Libro [isbn=" + isbn + ", titulo=" + titulo + ", autor=" + autor + ", materias=" + materias + "]";
 	}
 
 	//leer ISBN
 	public void leerIsbn () {
-		System.out.println("\n Introduce el isbn:");
+		this.isbn = leerString("Isbn");
+		
 	}
 	//Leer Otros Datos
 	public void leerOtrosDatos () {
-		System.out.println("\n Introduce el titulo:");
-		System.out.println("\n Introduce el autor:");
+		System.out.println("Introduce el titulo:");
+		System.out.println("Introduce el autor:");
+		this.titulo = leerString("Titulo");
+		this.autor = leerString("Autor");
 	}
 	
 	//Leer Datos
@@ -106,10 +100,10 @@ public class Libro {
 	
 	//mostrar Datos
 	public void mostrarDatos () {
-		System.out.println("\n" + toString ());
+		System.out.println(toString ());
 	}
 	
-	//Funcion para añadir una materia
+	//Funcion para aï¿½adir una materia
 	public boolean insertarMateria (Materia a) {
 		boolean exito = false;
 		if (!materias.contains(a)) {
@@ -127,6 +121,11 @@ public class Libro {
 		return this.isbn.equals(l.getIsbn());
 	}
 	
+	public static String leerString(String mensaje) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println(mensaje);
+		return sc.nextLine();
+	}
 	
 
 }

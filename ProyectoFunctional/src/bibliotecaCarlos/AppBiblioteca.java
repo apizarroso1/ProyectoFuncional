@@ -3,48 +3,41 @@ import java.util.Scanner;
 public class AppBiblioteca {
 
 	public static void main(String[] args) {
-		
 
-		//Creamos el objeto libreria
-		
-		Libreria libreria = new Libreria ();
-		
-		//Declarmos una nueva variable para leer 
+		// Creamos el objeto libreria
+
+		Libreria libreria = new Libreria();
+
+		// Declarmos una nueva variable para leer
 		int opcion;
-		
-		System.out.println();
-		System.out.println("Biblioteca");
-		System.out.println();
-		System.out.println
-		("\n (Mensaje infromativo: para seleccionar las materias de los libros antes hay que añadirlas."
-		+ "\n Getion de libros - Actualizar lista de materias.)");
-		System.out.println();
-		
-		//Leemos la opcion en un determinado rango.
-		do {
-			mostrarMenu ();
-			opcion = Libreria.leerEntre(1, 5, "\n Opciones a elegir");
-			evaluarOpc (opcion, libreria);
-			
-			
-		} while (opcion != 5); 
-	
-	}
-	
 
-	//Menu principal
-	//LOS /N NO SON OBLIGATORIOS PORQUE CON EL SYSTEM.OUT.PRINTLN SE HACEN LOS SALTOS LÍNEA
+		System.out.print("Biblioteca");
+		System.out.println("(Mensaje informativo: para seleccionar las materias de los libros antes hay que aï¿½adirlas."
+				+ "Getion de libros - Actualizar lista de materias.)");
+		System.out.println();
+
+		// Leemos la opcion en un determinado rango.
+		do {
+			mostrarMenu();
+			opcion = Libreria.leerEntre(1, 5, "Opciones a elegir");
+			evaluarOpc(opcion, libreria);
+
+		} while (opcion != 5);
+
+	}
+
+	// Menu principal
 	private static void mostrarMenu() {
 		// TODO Auto-generated method stub
-		
-		System.out.println("\n 1.Gestión de libros");
-		System.out.println("\n 2.Gestión de lectores");
-		System.out.println("\n 3.Gestion de prestamos");
-		System.out.println("\n 4.Busquedas");
-		System.out.println("\n 5.Salir de la aplicacion");
+
+		System.out.println(" 1.Gestiï¿½n de libros");
+		System.out.println(" 2.Gestiï¿½n de lectores");
+		System.out.println(" 3.Gestion de prestamos");
+		System.out.println(" 4.Busquedas");
+		System.out.println(" 5.Salir de la aplicacion");
 	}
-	
-	//Menu materias 
+
+	// Menu materias
 	private static void mostrarMenuMaterias() {
 		// TODO Auto-generated method stub
 		System.out.println("\n 1.Alta materia");
@@ -52,7 +45,7 @@ public class AppBiblioteca {
 		System.out.println("\n 3.Salir");
 	}
 
-	//Menu Libros 
+	// Menu Libros
 	private static void mostrarMenuLibros() {
 		// TODO Auto-generated method stub
 
@@ -64,12 +57,11 @@ public class AppBiblioteca {
 		System.out.println("\n 6.Compactar registro de libros");
 		System.out.println("\n 7.Actualizar lista de materias");
 		System.out.println("\n 8.Salir");
-												}
-	
-	
-	//Menú Lector
+	}
+
+	// Menï¿½ Lector
 	private static void mostrarMenuLectores() {
-	// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
 		System.out.println("\n 1.Alta lectores");
 		System.out.println("\n 2.Baja lectores");
 		System.out.println("\n 3.Anular baja de lectores");
@@ -78,261 +70,248 @@ public class AppBiblioteca {
 		System.out.println("\n 6.Compactar registro de lectores");
 		System.out.println("\n 7.Buscar lector");
 		System.out.println("\n 8.Salir");
-												}
-	//Menú préstamo
+	}
+
+	// Menï¿½ prï¿½stamo
 	private static void mostrarMenuPrestamos() {
-	// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
 		System.out.println("\n 1.Anotar prestamo");
 		System.out.println("\n 2.Anotar devolucion");
 		System.out.println("\n 3.Listar morosos");
 		System.out.println("\n 4.Prestamos de lector");
 		System.out.println("\n 5.Salir");
-													}
-	//Menu busqueda
+	}
+
+	// Menu busqueda
 	private static void mostrarBusqueda() {
 		// TODO Auto-generated method stub
 		System.out.println("\n 1.Buscar por autor");
-		System.out.println("\n 2.Buscar por título");
+		System.out.println("\n 2.Buscar por tï¿½tulo");
 		System.out.println("\n 3.Buscar por materia");
 		System.out.println("\n 4.Salir ");
-													}
-	
-	//Funcion para evaluar opcion del menu principal.
+	}
+
+	// Funcion para evaluar opcion del menu principal.
 	private static void evaluarOpc(int opcion, Libreria libreria) {
 		// TODO Auto-generated method stub
-		
+
 		switch (opcion) {
 		case 1:
 			int opcion2;
 			do {
 				System.out.println();
-				mostrarMenuLibros ();
+				mostrarMenuLibros();
 				opcion2 = Libreria.leerEntre(1, 8, "\n Introduce la opcion");
-				evaluarOpcLibros (opcion2, libreria);
-				
-				
+				evaluarOpcLibros(opcion2, libreria);
+
 			} while (opcion2 != 8);
-			
+
 			break;
-			
-		
+
 		case 2:
 			int opcion4;
 			do {
 				System.out.println();
-				mostrarMenuLectores ();
+				mostrarMenuLectores();
 				opcion4 = Libreria.leerEntre(1, 8, "\n Introduce la opcion");
-				evaluarOpcLectores (opcion4, libreria);
-				
-				
+				evaluarOpcLectores(opcion4, libreria);
+
 			} while (opcion4 != 8);
-			
+
 			break;
-			
+
 		case 3:
-			
+
 			int opcion5;
 			do {
 				System.out.println();
 				mostrarMenuPrestamos();
 				opcion5 = Libreria.leerEntre(1, 5, "\n Introduce la opcion");
-				evaluarOpcPrestamos (opcion5, libreria);
-				
+				evaluarOpcPrestamos(opcion5, libreria);
+
 			} while (opcion5 != 5);
-			
-			
-			break;	
-		
+
+			break;
+
 		case 4:
 			int opcion6;
 			do {
 				System.out.println();
 				mostrarBusqueda();
 				opcion6 = Libreria.leerEntre(1, 4, "\n Introduce la opcion");
-				evaluarOpcBusquedas (opcion6, libreria);
-				
+				evaluarOpcBusquedas(opcion6, libreria);
+
 			} while (opcion6 != 4);
-			
+
 			break;
 
 		default:
 			break;
 		}
-		
-	}
-	
 
-	//Evaluar opciones de búsquedas
-	private static void evaluarOpcBusquedas (int opcion6, Libreria libreria) {
-	Scanner sc = new Scanner(System.in); 
+	}
+
+	// Evaluar opciones de bï¿½squedas
+	private static void evaluarOpcBusquedas(int opcion6, Libreria libreria) {
 		switch (opcion6) {
 		case 1:
-		
-		    validar("¿Deseas continuar con la busqueda del autor?");
-		
-			String autor = sc.next("\n Introduce autor:");
-			
+
+			validar("ï¿½Deseas continuar con la busqueda del autor?");
+
+			String autor = Libro.leerString(" Introduce autor:");
+
 			libreria.buscarAutor(autor);
-			
+
 			break;
 		case 2:
-			validar("¿Deseas continuar con la busqueda del titulo?");
-			
+			validar("ï¿½Deseas continuar con la busqueda del titulo?");
+
 			String titulo = sc.next("\n Introduce titulo:");
-			
+
 			libreria.buscarTitulo(titulo);
-			
+
 			break;
-			
+
 		case 3:
-			validar("¿Deseas continuar con la busqueda por materia?");
+			validar("ï¿½Deseas continuar con la busqueda por materia?");
+
+			String nombreMateria = sc.nextLine();
 			
-			String materia = sc.next("\n Introduce materia:");
-			
-			
-			Materia materia = new Materia(materia);
-			
-			libreria.buscarMaterial(materia);
-			
+
+			Materia m = new Materia(nombreMateria);
+
+			libreria.buscarMaterial(m);
+
 			break;
-			
+
 		default:
 			break;
 		}
-}
+	}
 
-	
-	
-	//Evaluar opciones de Préstamos
+	// Evaluar opciones de Prï¿½stamos
 	private static void evaluarOpcPrestamos(int opcion5, Libreria libreria) {
-	// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
 		switch (opcion5) {
 		case 1:
-			validar("¿Deseas continuar con la alta del prestamo?");
-			crearPrestamo (libreria);
+			validar("ï¿½Deseas continuar con la alta del prestamo?");
+			crearPrestamo(libreria);
 			break;
 		case 2:
-			validar("¿Deseas continuar con la baja del prestamo?");
-			devolverPrestamo (libreria);
+			validar("ï¿½Deseas continuar con la baja del prestamo?");
+			devolverPrestamo(libreria);
 			break;
-			
+
 		case 3:
-			validar("¿Deseas continuar con la lista de morosos?");
+			validar("ï¿½Deseas continuar con la lista de morosos?");
 			libreria.listarPrestamos();
 			break;
-			
+
 		case 4:
-			validar("¿Deseas continuar para ver los prestamos del lector?");
-			 PrestamosLector(libreria);
+			validar("ï¿½Deseas continuar para ver los prestamos del lector?");
+			PrestamosLector(libreria);
 			break;
-			
+
 		default:
 			break;
 		}
-}
+	}
 
-	
-
-	//Funcion para evaluar la opcion del menu lectores.
+	// Funcion para evaluar la opcion del menu lectores.
 	private static void evaluarOpcLectores(int opcion4, Libreria libreria) {
-	
+
 		switch (opcion4) {
 		case 1:
-			validar("¿Deseas continuar con la alta del lector?");
-			darDeAltaLector (libreria);
+			validar("ï¿½Deseas continuar con la alta del lector?");
+			darDeAltaLector(libreria);
 			break;
 		case 2:
-			validar("¿Deseas continuar con la baja del lector?");
-			darBajaLector (libreria);
+			validar("ï¿½Deseas continuar con la baja del lector?");
+			darBajaLector(libreria);
 			break;
-			
+
 		case 3:
-			validar("¿Deseas continuar con la anulacion de la baja del lector?");
-			anularBajaLector (libreria);
+			validar("ï¿½Deseas continuar con la anulacion de la baja del lector?");
+			anularBajaLector(libreria);
 			break;
-			
+
 		case 4:
-			validar("¿Deseas continuar con la actualizacion del lector?");
-			 actualizarLector(libreria);
+			validar("ï¿½Deseas continuar con la actualizacion del lector?");
+			actualizarLector(libreria);
 			break;
-			
+
 		case 5:
-			validar("¿Deseas listar los lectores?");
+			validar("ï¿½Deseas listar los lectores?");
 			libreria.listarLectores();
 			break;
 
 		case 6:
-			validar("¿Deseas continuar con la compactacion del registro del lector?");
-			if(libreria.compactarRegistroLector()) {
+			validar("ï¿½Deseas continuar con la compactacion del registro del lector?");
+			if (libreria.compactarRegistroLector()) {
 				System.out.println("\n Los lectores dados de baja ya estan eliminados");
-			}
-			else {
+			} else {
 				System.out.println("\n Error al eliminar los lectores de baja");
 			}
 			break;
-			
+
 		case 7:
-			validar("¿Deseas continuar con la búsqueda del lector?");
+			validar("ï¿½Deseas continuar con la bï¿½squeda del lector?");
 			String nombre = sc.NextLine("Introduce el nombre a buscar:");
 			libreria.buscarLectores(nombre);
-			
-			
+
 			break;
-			
+
 		default:
 			break;
 		}
-	
-}
 
-	
-	//Funcion para evaluar la opcion del menu libros.
+	}
+
+	// Funcion para evaluar la opcion del menu libros.
 	private static void evaluarOpcLibros(int opcion2, Libreria libreria) {
 		// TODO Auto-generated method stub
 		switch (opcion2) {
 		case 1:
-			validar("¿Deseas continuar con la alta del libro?");
+			validar("ï¿½Deseas continuar con la alta del libro?");
 			darDeAltaUnLibro(libreria);
 			break;
-			
+
 		case 2:
-			validar("¿Deseas continuar con la baja del libro?");
-			darBajaLibro (libreria);
+			validar("ï¿½Deseas continuar con la baja del libro?");
+			darBajaLibro(libreria);
 			break;
 		case 3:
-			validar("¿Deseas continuar con la anulacion de la baja del libro?");
-			anularBajaLibro (libreria);
+			validar("ï¿½Deseas continuar con la anulacion de la baja del libro?");
+			anularBajaLibro(libreria);
 			break;
-			
+
 		case 4:
-			validar("¿Deseas continuar con la actualizacion del libro?");
+			validar("ï¿½Deseas continuar con la actualizacion del libro?");
 			actualizarLibro(libreria);
 			break;
 		case 5:
-			validar("¿Deseas continuar con la lista de libros?");
+			validar("ï¿½Deseas continuar con la lista de libros?");
 			libreria.listarLibros();
 			break;
-			
+
 		case 6:
-			validar("¿Deseas continuar con la compctacion de regristos del libro?");
-			if(libreria.compactarRegistro()) {
+			validar("ï¿½Deseas continuar con la compctacion de regristos del libro?");
+			if (libreria.compactarRegistro()) {
 				System.out.println("\n Los libros dados de baja ya estan eliminados");
-			}
-			else {
+			} else {
 				System.out.println("\n Error al eliminar los libros de baja");
 			}
 			break;
-			
+
 		case 7:
 			int opcion3;
 			do {
-				
-            System.out.println();
-            mostrarMenuMaterias ();
-				opcion3 = Libreria2.leerEntre(1, 3, "\n Introduce la opcion");
-				evaluarOpcMaterias (opcion3, libreria);
-				
-				
+
+				System.out.println();
+				mostrarMenuMaterias();
+				opcion3 = Libreria.leerEntre(1, 3, "\n Introduce la opcion");
+				evaluarOpcMaterias(opcion3, libreria);
+
 			} while (opcion3 != 3);
 			break;
 		default:
@@ -340,28 +319,28 @@ public class AppBiblioteca {
 		}
 	}
 
-	//Evaluar la opcion del menu de materias
+	// Evaluar la opcion del menu de materias
 	private static void evaluarOpcMaterias(int opcion3, Libreria libreria) {
 		// TODO Auto-generated method stub
 		switch (opcion3) {
-		
+
 		case 1:
-			validar("¿Deseas añadir materias?");
-			Materia m = new Materia ();
+			validar("ï¿½Deseas aï¿½adir materias?");
+			Materia m = new Materia();
 			m.leerDatos();
-			if(libreria.altaMateria(m))
-				System.out.println("\n materia añadida");
-			else 
-				System.out.println("\n error al añadir materia");
+			if (libreria.altaMateria(m))
+				System.out.println("\n materia aï¿½adida");
+			else
+				System.out.println("\n error al aï¿½adir materia");
 			break;
-			
+
 		case 2:
-			validar("¿Deseas borrar materias?");
-			Materia materia1 = new Materia ();
+			validar("ï¿½Deseas borrar materias?");
+			Materia materia1 = new Materia();
 			materia1.leerDatos();
-			if(libreria.bajaMateria(materia1))
+			if (libreria.bajaMateria(materia1))
 				System.out.println("\n materia borrada correctamente ");
-			else 
+			else
 				System.out.println("\n error al borrar la materia");
 			break;
 
@@ -370,265 +349,229 @@ public class AppBiblioteca {
 		}
 	}
 
-
-	
-	//Funciones para dar de alta un libro
+	// Funciones para dar de alta un libro
 
 	public static void darDeAltaUnLibro(Libreria libreria) {
-		
-		Libro a = new Libro ();
+
+		Libro a = new Libro();
 		a.leerIsbn();
-		if(!libreria.existeLibro(a)) {
+		if (!libreria.existeLibro(a)) {
 			a.leerOtrosDatos();
 			do {
 				Materia materia = new Materia();
 				libreria.mostrarMaterias();
-				m.setNombre(Teclado.leerString("\n Selecciona una materia :"));
-				
-				
-				//Meto un libro
-				if(libreria.getMaterias().contains(materia)) {
+				materia.setNombre(Libro.leerString("Nombre materia"));
+
+				// Meto un libro
+				if (libreria.getMaterias().contains(materia)) {
 					a.insertarMateria(materia);
 					System.out.println("\n Materia insertada");
-				}else {
+				} else {
 					System.out.println("\n Selecciona una de las disponibles ");
 				}
-				
-				
-				
-			}while(System.out.println("\n Quieres añadir otra?(S/N)").equalsIgnoreCase("S"));
+
+			} while (Libro.leerString("Quieres aï¿½adir otra?(S/N)").equalsIgnoreCase("S"));
 			libreria.altaLibro(a);
-		}else {
-			System.out.println("\n El libro a dar de alta ya EXISTE");
+		} else {
+			System.out.println("\n El libro a dar de alta ya existe");
 		}
 	}
-	
 
-	//Funcion que da de baja un libro.
-	public static void darBajaLibro (Libreria libreria) {
-		
-		 //Nuevo libro
-		Libro l = new Libro ();
-		
-		//Leer ISBN
+	// Funcion que da de baja un libro.
+	public static void darBajaLibro(Libreria libreria) {
+
+		// Nuevo libro
+		Libro l = new Libro();
+
+		// Leer ISBN
 		boolean exito;
 		l.leerIsbn();
 		exito = libreria.bajaLibro(l);
-		
+
 		if (exito) {
 			System.out.println("\n Dado de baja correctamente");
-		}
-		else 
-		{
+		} else {
 			System.out.println("\n Error baja");
 		}
-		
+
 	}
-	
-	
-	
-	//Función que anula la baja de un libro
+
+	// Funciï¿½n que anula la baja de un libro
 
 	private static void anularBajaLibro(Libreria libreria) {
 		// TODO Auto-generated method stub
-		Libro l = new Libro ();
-		
-		
-		//funcion del objeto librería
+		Libro l = new Libro();
+
+		// funcion del objeto librerï¿½a
 		boolean exito;
 		l.leerIsbn();
 		exito = libreria.anularBajaLibro(l);
-		
+
 		if (exito) {
 			System.out.println("\n Baja anulada correctamente");
-		}
-		else 
-		{
+		} else {
 			System.out.println("\n Error anulacion");
 		}
 	}
-	
-	 //Función que actualiza los libros
+
+	// Funciï¿½n que actualiza los libros
 	private static void actualizarLibro(Libreria libreria) {
 		// TODO Auto-generated method stub
-		Libro l = new Libro ();
-		          
-		
-		//Creo un ISBN y lo leo
+		Libro l = new Libro();
+
+		// Creo un ISBN y lo leo
 		l.leerIsbn();
-		
+
 		if (libreria.existeLibro(l)) {
 			l.leerOtrosDatos();
 			do {
-			Scanner sc = new Scanner(System.in);
+				Scanner sc = new Scanner(System.in);
 				Materia materia = new Materia();
 				libreria.mostrarMaterias();
-				materia.setNombre(System.out.println("\n Selecciona una materia :"));
-				if(libreria.getMaterias().contains(m)) {
+				materia.setNombre(Libro.leerString("Selecciona una materia :")));
+				if (libreria.getMaterias().contains(m)) {
 					l.insertarMateria(m);
 					System.out.println("\n Materia insertada");
-				}else {
+				} else {
 					System.out.println("\n Selecciona una de las disponibles ");
 				}
-			}while(System.out.println("\n Quieres añadir otra?(S/N)").equalsIgnoreCase("S"));
-			
+			} while (System.out.println("\n Quieres aï¿½adir otra?(S/N)").equalsIgnoreCase("S"));
+
 			libreria.actualizarLibro(l);
 			System.out.println("\n Libro actualizado");
-			
-		}
-		else
+
+		} else
 			System.out.println("\n No se puede actualizar");
 	}
-	
 
-	
+	// Funciones de prï¿½stamos para el lector
 
-	//Funciones de préstamos para el lector
+	private static void PrestamosLector(Libreria libreria) {
+		// TODO Auto-generated method stub
 
+		Lector l = new Lector();
+		l.leerDni();
+		libreria.PrestamosLector(l);
+	}
 
-		private static void PrestamosLector(Libreria libreria) {
-			// TODO Auto-generated method stub
-			
-			Lector l = new Lector ();
-			l.leerDni();
-			libreria.PrestamosLector(l);
+	// Funcion que devuelve un prestamo
+	private static void devolverPrestamo(Libreria libreria) {
+		// TODO Auto-generated method stub
+
+		Libro prestamo = new Libro();
+		Lector l = new Lector();
+
+		prestamo.leerIsbn();
+		l.leerDni();
+
+		if (libreria.anotarDevolucion(prestamo, l)) {
+			System.out.println("\n Prestamo devuelto correctamente.");
 		}
 
-		 //Funcion que devuelve un prestamo
-		private static void devolverPrestamo(Libreria libreria) {
-			// TODO Auto-generated method stub
-			
-			Libro prestamo = new Libro ();
-			Lector l = new Lector ();
-			
-			prestamo.leerIsbn();
-			l.leerDni();
-			
-			if (libreria.anotarDevolucion(prestamo, l)) {
-				System.out.println("\n Prestamo devuelto correctamente.");
-			}
-			
-			else
-				System.out.println("\n Prestamo no devuelto.");
+		else
+			System.out.println("\n Prestamo no devuelto.");
+	}
+
+	// Funcion que guarda un prestamo
+	private static void crearPrestamo(Libreria libreria) {
+		// TODO Auto-generated method stub
+
+		Libro prestamo = new Libro();
+		Lector l = new Lector();
+
+		prestamo.leerIsbn();
+		l.leerDni();
+
+		if (libreria.anotarPrestamo(prestamo, l)) {
+			System.out.println("\n Prestamo anotado correctamente.");
 		}
 
-		
-		 //Funcion que guarda un prestamo
-		private static void crearPrestamo(Libreria libreria) {
-			// TODO Auto-generated method stub
-			
-			Libro prestamo = new Libro ();
-			Lector l = new Lector ();
-			
-			prestamo.leerIsbn();
-			l.leerDni();
-			
-			if (libreria.anotarPrestamo(prestamo, l)) {
-				System.out.println("\n Prestamo anotado correctamente.");
-			}
-			
-			else
-				System.out.println("\n Prestamo  no anotado .");
-		}
+		else
+			System.out.println("\n Prestamo  no anotado .");
+	}
 
-
-	
-	
-	//Función que da de alta a un Lector
+	// Funciï¿½n que da de alta a un Lector
 
 	private static void darDeAltaLector(Libreria libreria) {
 		// TODO Auto-generated method stub
-		Lector a = new Lector ();
+		Lector a = new Lector();
 		a.leerDni();
-		if(!libreria.existeLector(a)) {
+		if (!libreria.existeLector(a)) {
 			a.leerOtrosDatos();
 			libreria.altaLector(a);
 			System.out.println("\n Insertado correctamente");
-		}else {
+		} else {
 			System.out.println("\n El lector a dar de alta ya EXISTE");
 		}
 	}
-	
-	
-	//Función que da de baja al lector
-		private static void darBajaLector(Libreria libreria) {
-			// TODO Auto-generated method stub
-			Lector l = new Lector ();
-			
-			boolean exito;
-			l.leerDni();
-			exito = libreria.bajaLector(l);
-			
-			if (exito) {
-				System.out.println("\n Se ha dado de baja correctamente");
-			}
-			else 
-			{
-				System.out.println("\n Error al dar de baja");
-			}
+
+	// Funciï¿½n que da de baja al lector
+	private static void darBajaLector(Libreria libreria) {
+		// TODO Auto-generated method stub
+		Lector l = new Lector();
+
+		boolean exito;
+		l.leerDni();
+		exito = libreria.bajaLector(l);
+
+		if (exito) {
+			System.out.println("\n Se ha dado de baja correctamente");
+		} else {
+			System.out.println("\n Error al dar de baja");
 		}
+	}
 
+	// Funcion que anula la baja de un Lector
 
-	 //Funcion que anula la baja de un Lector
-	
 	private static void anularBajaLector(Libreria libreria) {
 		// TODO Auto-generated method stub
-		Lector l = new Lector ();
-		
+		Lector l = new Lector();
+
 		boolean exito;
 		l.leerDni();
 		exito = libreria.anularBajaLector(l);
-		
+
 		if (exito) {
 			System.out.println("\n Baja anulada correctamente");
-		}
-		else 
-		{
+		} else {
 			System.out.println("\n Error anulacion");
 		}
 	}
-	
-	
 
-	
-	 //Funcion que actualiza al lector
-	 
+	// Funcion que actualiza al lector
+
 	private static void actualizarLector(Libreria libreria) {
-	
-		Lector l = new Lector ();
-		
+
+		Lector l = new Lector();
+
 		l.leerDni();
-		
+
 		if (libreria.existeLector(l)) {
 			l.leerOtrosDatos();
-		
+
 			libreria.actualizarLector(l);
 			System.out.println("\n Lector actualizado");
-			
-		}
-		else
+
+		} else
 			System.out.println("\n No se puede actualizar");
 	}
-	
 
+//Funciï¿½n validar
 
-
-	
-
-//Función validar
-
-	
-private static boolean validar (String respuesta) {
-	int opcion = N;
-	boolean continuar = false;
-	System.out.println();
-	System.out.println(respuesta);
-	opcion=Libreria.leerEntre(N, S, "\n Elige una opcion (N = NO; S = SI)");
-	if(opcion == S)
-		continuar = true;
-	return continuar;
+	private static boolean validar(String respuesta) {
+		String opcion;
+		boolean continuar = false;
+		System.out.println();
+		System.out.println(respuesta);
+		
+		do {
+			opcion = Libro.leerString("Elige una opcion (N = NO; S = SI)");
+		} while (!opcion.equalsIgnoreCase("S") || !opcion.equalsIgnoreCase("N"));
+		
+		if (opcion.equalsIgnoreCase("S")) {
+			continuar = true;
+		}
+		return continuar;
 	}
-	
-}
 
-	
+}

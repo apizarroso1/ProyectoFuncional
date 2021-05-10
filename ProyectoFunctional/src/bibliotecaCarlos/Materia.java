@@ -1,9 +1,11 @@
+package bibliotecaCarlos;
+
 public class Materia {
 
 	//Variables
 	private String nombre;
 
-	//Constructor con parámetros
+	//Constructor con parï¿½metros
 	public Materia(String nombre) {
 	
 		this.nombre = nombre;
@@ -37,7 +39,7 @@ public class Materia {
 	
 	//Leer datos
 	public void leerDatos () {
-		System.out.println("\n Introduce el nombre de la materia:");
+		this.nombre = Libro.leerString("Nombre");
 	}
 	
 	//Mostrar datos
@@ -45,14 +47,23 @@ public class Materia {
 		System.out.println("\n" + toString());
 	}
 
-	//Equals
 	@Override
 	public boolean equals(Object obj) {
-	
-		Materia a = (Materia) obj;
-		
-		return this.nombre.equals(a.getNombre());
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Materia other = (Materia) obj;
+		if (nombre == null) {
+			if (other.nombre != null)
+				return false;
+		} else if (!nombre.equals(other.nombre))
+			return false;
+		return true;
 	}
+
 	
 	
 }

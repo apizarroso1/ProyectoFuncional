@@ -5,7 +5,7 @@ public class Lector {
 	private int edad;
 	
 	
-	//Usamos parámetros en el constructor
+	//Usamos parï¿½metros en el constructor
 	public Lector(String dni, String nombre, int edad) {
 		
 		this.dni = dni;
@@ -24,13 +24,6 @@ public class Lector {
 	public Lector () {
 		this ("","",18);
 	}
-
-	//Costructor copia
-	public Lector (Lector original) {
-		
-		this (original.dni, original.nombre, original.edad);
-															}
-	
 	
 	//Selectores y modificadores
 	public String getDni() {
@@ -55,14 +48,13 @@ public class Lector {
 
 	public void setEdad(int edad) {
 		if (edad < 18)
-			edad=18;
+			edad = 18;
 		if (edad > 120) 
-			edad =120;
+			edad = 120;
 		
 		this.edad = edad;
 	}
 
-	//Usamos este método para evitar errores en la ejecución del programa
 	@Override
 	public String toString() {
 		return "Lector [dni=" + dni + ", nombre=" + nombre + ", edad=" + edad + "]";
@@ -71,12 +63,12 @@ public class Lector {
 	
     //Leemos DNI y otros datos
 	public void leerDni () {
-			System.out.println("\n Introduce el dni:");
+			System.out.println("Introduce el dni:");
 	}
 	
 	public void leerOtrosDatos () {
-			System.out.println("\n Introduce el nombre:");
-			setEdad(Libreria2.leerEntre(18, 120, "\n Introduce edad:"));
+			System.out.println("Introduce el nombre:");
+			setEdad(Libreria.leerEntre(18, 120, "Introduce edad:"));
 		}
 	
 	
@@ -87,17 +79,26 @@ public class Lector {
 		
 	//Mostramos Datos
 	public void mostrarDatos () {
-			System.out.println("\n" + toString ());
+			System.out.println(toString());
 		}
 
 	@Override
 	public boolean equals(Object obj) {
-		Lector l = (Lector) obj;
-			
-		return this.dni.equals(l.getDni());
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Lector other = (Lector) obj;
+		if (dni == null) {
+			if (other.dni != null)
+				return false;
+		} else if (!dni.equals(other.dni))
+			return false;
+		return true;
 	}
-	
-	
+
 	
 	
 }
