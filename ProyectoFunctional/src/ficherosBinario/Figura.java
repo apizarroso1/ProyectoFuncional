@@ -11,7 +11,7 @@ import daw.com.Teclado;
 abstract public class Figura implements Serializable {
 	
 	/**
-	 * 
+	 * seguir
 	 */
 	private static final long serialVersionUID = 1L;
 	
