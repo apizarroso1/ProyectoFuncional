@@ -15,6 +15,8 @@ public class Ejer1 {
 		 */
 
 		int[] numeros = new int[10];
+		
+		int n;
 
 		leerNumeros(numeros);
 
