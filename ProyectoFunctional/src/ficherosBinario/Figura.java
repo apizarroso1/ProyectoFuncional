@@ -8,41 +8,25 @@ import java.io.Serializable;
 import daw.com.Pantalla;
 import daw.com.Teclado;
 
-abstract public class Figura implements Serializable {
-	
-	/**
-	 * seguir
-	 */
+public abstract class Figura implements Serializable {
+
 	private static final long serialVersionUID = 1L;
-	
+
 	private String nombre;
+	private int grosor;
 	private int color;
+	private PuntoBidimensional centro;
 
-	private Punto2D centro;
-	
+	public Figura(String nombre, int grosor, int color, PuntoBidimensional centro) {
+		this.nombre = nombre;
+		this.grosor = grosor;
+		this.color = color;
+		this.centro = centro;
+	}
+
 	public Figura() {
-		nombre ="";
-		color = 0;
-		
-		centro = new Punto2D();
+		this("", 0, 0, new PuntoBidimensional());
 	}
-
-
-	public Figura (Figura original)
-	{
-		this.nombre = original.nombre;
-		this.color = original.color;
-		
-		this.centro = new Punto2D (original.centro);
-		
-	}
-
-
-	public int getColor() {
-		return color;
-	}
-
-
 
 	public String getNombre() {
 		return nombre;
@@ -52,103 +36,108 @@ abstract public class Figura implements Serializable {
 		this.nombre = nombre;
 	}
 
+	public int getGrosor() {
+		return grosor;
+	}
+
+	public void setGrosor(int grosor) {
+		this.grosor = grosor;
+	}
+
+	public int getColor() {
+		return color;
+	}
 
 	public void setColor(int color) {
 		if (color < 0 || color > 254)
-			throw new IllegalArgumentException ("color no vï¿½lido");
+			throw new IllegalArgumentException("color no válido");
 
 		this.color = color;
 	}
 
-
-	public Punto2D getCentro() {
+	public PuntoBidimensional getCentro() {
 		return centro;
 	}
 
+	public void setCentro(PuntoBidimensional centro) {
+		this.centro = centro;
+	}
 
-	public void setCentro(Punto2D centro) {
-		this.centro = new Punto2D(centro);
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+		return result;
 	}
-	
-	public void leerClave ()
-	{
-		nombre = Teclado.leerString("\nNombre");
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Figura other = (Figura) obj;
+		if (nombre == null) {
+			if (other.nombre != null)
+				return false;
+		} else if (!nombre.equals(other.nombre))
+			return false;
+		return true;
 	}
-	
-	
-	public void leerDatos ()
-	{
-		leerClave ();
-		leerOtrosDatos ();
+
+	@Override
+	public String toString() {
+		return "Figura [nombre=" + nombre + ", grosor=" + grosor + ", color=" + color + ", centro=" + centro + "]";
 	}
-	
-	public void leerOtrosDatos ()
-	{
+
+	public void leerDatos() {
+		leerClave();
+		leerOtrosDatos();
+	}
+
+	public void leerClave() {
+		this.nombre = Teclado.leerString("\nNombre");
+	}
+
+	public void leerOtrosDatos() {
 		boolean valido;
-		
-		do
-		{
+
+		do {
 			valido = true;
 
 			try {
-				setColor (Teclado.leerInt("color:"));
-			}
-			catch (IllegalArgumentException e)
-			{
+				setColor(Teclado.leerInt("color:"));
+			} catch (IllegalArgumentException e) {
 				Pantalla.escribirString("\n" + e.getMessage());
 				valido = false;
 			}
-		}while (!valido);
-			
-		// leer el centro del teclado
-		centro.leerPunto();
-		
-	}
-	
-	public void mostrarDatos()
-	{
-		Pantalla.escribirString("\nnombre :", nombre);
-		
-		Pantalla.escribirInt("\nbgcolor :" , color);
-		
-		centro.mostrarPunto();
-	}
-	
-	public void leerFichero (DataInputStream fichero) throws IOException
-	{
-		nombre = fichero.readUTF();
-		
-		try {
-			setColor (fichero.readInt());
-		}
-		catch (IllegalArgumentException e)
-		{
-			color = 0;
-		}
-		
+		} while (!valido);
 
-		centro.leerFichero(fichero);
+		this.centro.leerDatos();
+		setColor(Teclado.leerInt("\nColor"));
+		setGrosor(Teclado.leerInt("\nGrosor"));
+	}
+
+	public void mostrarDatos() {
+		System.out.println(toString());
+	}
+
+	public void leerFichero(DataInputStream fichero) throws IOException {
+		this.nombre = fichero.readUTF();
+		this.centro.leerFichero(fichero);
+		this.color = fichero.readInt();
+		this.grosor = fichero.readInt();
 	}
 	
-	public void escribirFichero (DataOutputStream fichero) throws IOException
-	{
+	public void escribirFichero(DataOutputStream fichero) throws IOException{
 		fichero.writeUTF(nombre);
-		
+		this.centro.escribirFichero(fichero);
 		fichero.writeInt(color);
-		
-		
-		centro.escribirFichero(fichero);
-		
+		fichero.writeInt(grosor);
 	}
 	
-	@Override
-	public String toString() {
-		return "nombre=" + nombre + ", color=" + color + ", " + centro ;
-	}
-
-
-	abstract public float getArea();
-	
-
-
+	public abstract float calcularArea();
 }
