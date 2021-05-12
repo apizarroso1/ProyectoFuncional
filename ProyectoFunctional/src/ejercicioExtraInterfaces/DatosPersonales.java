@@ -7,6 +7,7 @@ public class DatosPersonales implements LeerYMostrarDatos {
 	private String apellidos;
 	private String dni;
 	private String direccion;
+	// hola
 
 	public DatosPersonales(String nombre, String apellidos, String dni, String direccion) {
 		this.nombre = nombre;
