@@ -5,7 +5,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDate;
-import java.time.Period;
 
 import daw.com.Teclado;
 
@@ -86,9 +85,10 @@ public class Atleta extends Deportista {
 	public void leerMarca() {
 		int horas, minutos, segundos;
 
-		horas = Teclado.leerInt("\nHoras");
-		minutos = Teclado.leerInt("\nMinutos");
-		segundos = Teclado.leerInt("\nSegundos");
+		/*
+		 * horas = Teclado.leerInt("\nHoras"); minutos = Teclado.leerInt("\nMinutos");
+		 * segundos = Teclado.leerInt("\nSegundos");
+		 */
 
 		// this.marca = Duration.ofHours(horas).toSeconds() +
 		// Duration.ofMinutes(minutos).toSeconds() + Duration.ofSeconds(segundos);
@@ -98,14 +98,14 @@ public class Atleta extends Deportista {
 
 		Deportistas.writeUTF(lugarPrueba);
 		Deportistas.writeInt(distancia);
-		// Escribir el Duration
+		Deportistas.writeUTF(this.marca.toString());
 	}
 
 	public void leerFichero(DataInputStream Deportistas) throws IOException {
 
 		this.lugarPrueba = Deportistas.readUTF();
 		this.distancia = Deportistas.readInt();
-		// Leer Duration
+		this.marca = Duration.parse(Deportistas.readUTF());
 	}
 
 }

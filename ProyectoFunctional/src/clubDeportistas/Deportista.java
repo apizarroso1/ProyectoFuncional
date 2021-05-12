@@ -22,7 +22,7 @@ public class Deportista {
 	}
 
 	public Deportista() {
-		this("", "", "Atleta", LocalDate.now());
+		this("", "", "Atleta", null);
 	}
 
 	public Deportista(String dni) {
@@ -144,7 +144,7 @@ public class Deportista {
 		Deportistas.writeUTF(dni);
 		Deportistas.writeUTF(nombre);
 		Deportistas.writeUTF(tipo);
-		// Escribir el LocalDate
+		Deportistas.writeUTF(this.fechaNac.toString());
 	}
 	
 	public void leerFichero(DataInputStream Deportistas) throws IOException {
@@ -152,7 +152,7 @@ public class Deportista {
 		this.dni = Deportistas.readUTF();
 		this.nombre = Deportistas.readUTF();
 		this.tipo = Deportistas.readUTF();
-		// Leer LocalDate
+		this.fechaNac = LocalDate.parse(Deportistas.readUTF());
 	}
 
 }
