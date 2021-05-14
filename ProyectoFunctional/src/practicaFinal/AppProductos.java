@@ -82,7 +82,7 @@ public class AppProductos extends AppMenu {
 		}
 
 	}
-
+	
 	public void modificarStock() {
 		String ref;
 		Producto p;
