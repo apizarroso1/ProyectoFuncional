@@ -177,15 +177,15 @@ public class AppProductos extends AppMenu {
 		productos.eliminarCaducados();
 	}
 
-	public void escribirDatosBinario(ArrayList<Producto> productos) {
+	public void escribirDatosBinario() {
 		String clase;
 		File fichero = new File(FICHERO);
 
 		try (FileOutputStream bruto = new FileOutputStream(fichero);
 				DataOutputStream filtro = new DataOutputStream(bruto)) {
-			filtro.writeInt(productos.size());
+			filtro.writeInt(productos.returnAll().size());
 
-			for (Producto p : productos) {
+			for (Producto p : productos.returnAll()) {
 				clase = p.getClass().getName();
 				filtro.writeUTF(clase);
 				p.escribirFicheroBin(filtro);

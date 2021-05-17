@@ -84,9 +84,7 @@ public class AppDeportistas extends AppMenu {
 		Duration duracion = Duration.between(inicio, fin); //intervalo
 		
 		
-		Pantalla.escribirString("\nTiempo usado " + Tiempo.tiempoToString(duracion) );
-	
-		
+		System.out.println("Tiempo usado " + Tiempo.tiempoToString(duracion));	
 	}
 	
 	public void cargarDatosBinario ()
@@ -130,7 +128,7 @@ public class AppDeportistas extends AppMenu {
 	}
 	
 		
-	public void guardarDatosBinario (List<Deportista> deportistasOrdenados )
+	public void guardarDatosBinario (List<Deportista> deportistasOrdenados)
 	{
 		
 		String tipo;
