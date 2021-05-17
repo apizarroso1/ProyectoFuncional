@@ -1,5 +1,11 @@
 package practicaFinal;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -11,7 +17,7 @@ import libreria.AppMenu;
 
 public class AppProductos extends AppMenu {
 
-	private final static String fichero = "productos.dat";
+	private final static String FICHERO = "productos.dat";
 
 	private ColeccionProductos productos;
 
@@ -28,6 +34,12 @@ public class AppProductos extends AppMenu {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+
+		AppProductos app = new AppProductos();
+
+		app.cargarDatosBinario();
+
+		app.run();
 
 	}
 
@@ -48,8 +60,11 @@ public class AppProductos extends AppMenu {
 		case 4:
 			mostrarPrecios();
 			break;
-		case 5: 
+		case 5:
 			eliminarCaducados();
+			break;
+		case 6:
+			finalizarPrograma();
 			break;
 		}
 
@@ -82,7 +97,7 @@ public class AppProductos extends AppMenu {
 		}
 
 	}
-	
+
 	public void modificarStock() {
 		String ref;
 		Producto p;
@@ -137,30 +152,86 @@ public class AppProductos extends AppMenu {
 			}
 
 		} while (Teclado.leerString("\nS/N para continuar").equalsIgnoreCase("s"));
-		
+
 		if (!pedido.isEmpty()) {
 			for (Producto q : pedido) {
-				importe =+ q.calcularPvp() * p.getStock();
+				importe = +q.calcularPvp() * p.getStock();
 			}
-			
+
 			System.out.println("El importe a pagar por el pedido realizado es de :");
 			System.out.print(importe);
 		}
 	}
-	
+
 	public void mostrarPrecios() {
-		ArrayList <Producto> copia = new ArrayList<>(productos.returnAll());
+		ArrayList<Producto> copia = new ArrayList<>(productos.returnAll());
 		ComparadorPrecio comparator = new ComparadorPrecio();
 		ConsumerMostrar consumer = new ConsumerMostrar();
-		
+
 		Collections.sort(copia, comparator);
-		
+
 		copia.forEach(consumer);
 	}
-	
+
 	public void eliminarCaducados() {
-		
+		productos.eliminarCaducados();
 	}
-	
-	
+
+	public void escribirDatosBinario(ArrayList<Producto> productos) {
+		String clase;
+		File fichero = new File(FICHERO);
+
+		try (FileOutputStream bruto = new FileOutputStream(fichero);
+				DataOutputStream filtro = new DataOutputStream(bruto)) {
+			filtro.writeInt(productos.size());
+
+			for (Producto p : productos) {
+				clase = p.getClass().getName();
+				filtro.writeUTF(clase);
+				p.escribirFicheroBin(filtro);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	@SuppressWarnings("deprecation")
+	public void cargarDatosBinario() {
+		String clase;
+		int cantidad;
+		Producto p;
+		File fichero = new File(FICHERO);
+
+		if (fichero.exists()) {
+			try (FileInputStream bruto = new FileInputStream(fichero);
+					DataInputStream filtro = new DataInputStream(bruto)) {
+				cantidad = filtro.readInt();
+
+				for (int i = 0; i < cantidad; i++) {
+					clase = filtro.readUTF();
+
+					p = (Producto) Class.forName(clase).newInstance();
+
+					p.leerFicheroBin(filtro);
+
+					productos.insert(p);
+				}
+			}
+
+			catch (IOException e) {
+				System.out.println("Fichero no encontrado o inaccesible");
+			}
+
+			catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+				System.out.println("Error al cargar los datos");
+			}
+		}
+	}
+
+	public void finalizarPrograma() {
+
+		System.out.println("Guardando datos y finalizando el programa...");
+	}
+
 }

@@ -1,5 +1,6 @@
 package practicaFinal;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -33,6 +34,16 @@ public class ColeccionProductos {
 
 	public boolean delete(Producto p) {
 		return productos.remove(p.getRef()) != null;
+	}
+	
+	public void eliminarCaducados() {
+		for (Producto p : productos.values()) {
+			if (p instanceof Perecedero) {
+				if (((Perecedero) p).getFechaCad().isBefore(LocalDate.now())) {
+					productos.remove(p.getRef());
+				}
+			}
+		}
 	}
 
 	// public boolean eliminarEnMasa() {

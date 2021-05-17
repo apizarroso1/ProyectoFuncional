@@ -3,7 +3,6 @@ package clubDeportistasMiguel;
 import java.time.Duration;
 
 import daw.com.Teclado;
-import libreria.Libreria;
 
 public class Tiempo {
 	

@@ -11,7 +11,6 @@ import java.time.format.DateTimeParseException;
 
 import daw.com.Pantalla;
 import daw.com.Teclado;
-import libreria.Libreria;
 
 public class Atleta extends Deportista {
 	
